@@ -140,3 +140,67 @@ Distributed under the [MIT](http://showalicense.com/?fullname=Konstantin+M%C3%BC
 See `LICENSE` for more information.
 
 [https://github.com/konstantinmuenster](https://github.com/konstantinmuenster)
+
+
+
+For Heroku:
+
+brew install heroku/brew/heroku
+heroku login
+heroku create [app-name] //if you haven't create a app name
+heroku create notion-frontend
+heroku create notion-backend 
+
+git remote -v
+should look likethis:
+
+
+git remote -v
+
+heroku	https://git.heroku.com/notion-test.git (fetch)
+heroku	https://git.heroku.com/notion-test.git (push)
+notion-backend	https://git.heroku.com/notion-backend.git (fetch)
+notion-backend	https://git.heroku.com/notion-backend.git (push)
+notion-frontend	https://git.heroku.com/notion-frontend.git (fetch)
+notion-frontend	https://git.heroku.com/notion-frontend.git (push)
+origin	git@github.com:luomichelle/notion-clone.git (fetch)
+origin	git@github.com:luomichelle/notion-clone.git (push)
+
+
+
+
+git remote add notion-backend https://git.heroku.com/notion-backend.git
+git remote add notion-frontend https://git.heroku.com/notion-frontend.git
+
+
+git subtree push --prefix backend notion-backend master
+git subtree push --prefix frontend notion-frontend master 
+
+
+heroku config:set MAIL_HOST="smtp.sendgrid.net" -a notion-backend
+heroku config:set MONGO_URI="~~~~" -a notion-backend     
+heroku config:set DOMAIN="notion-frontend-4b243f4b78bb.herokuapp.com" -a notion-backend
+heroku config:set FRONTEND_URL="https://notion-frontend-4b243f4b78bb.herokuapp.com" -a notion-backend
+heroku config:set NEXT_PUBLIC_API_URL=https://notion-backend-3e25ded4202a.herokuapp.com -a notion-frontend
+heroku config:set REACT_APP_BACKEND_URL=https://notion-backend-3e25ded4202a.herokuapp.com -a notion-frontend
+
+
+force build:
+heroku git:remote -a notion-frontend
+git commit --allow-empty -m "Trigger build for notion-frontend"
+git push heroku master
+
+
+heroku git:remote -a notion-backend
+git commit --allow-empty -m "Trigger build for notion-backend"
+git push heroku master
+
+If Issues Persist: 
+git push heroku master --force
+
+
+
+
+
+
+
