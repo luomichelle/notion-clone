@@ -9,6 +9,9 @@
     "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "author": "Konstantin Münster",
   "license": "ISC",
   "dependencies": {
